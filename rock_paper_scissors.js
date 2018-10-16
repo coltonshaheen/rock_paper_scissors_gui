@@ -47,11 +47,11 @@ function playRound() {
         playerSelection === 'paper' && computerSelection === 'scissors' ||
         playerSelection === 'scissors' && computerSelection === 'rock') {
         alert("You Lose! " + computerSelection + " beats " + playerSelection);
-        playerCount++;
+        computerCount++;
         roundCounter++;
     } else {
         alert("You Win! " + playerSelection + " beats " + computerSelection);
-        computerCount++;
+        playerCount++;
         roundCounter++;
     }
     return 1;
@@ -61,18 +61,22 @@ function game() {
     for (roundCounter = 0; roundCounter < 5;) {
         let getOut = playRound();
         if (getOut === 0) { return; }
+        console.log("Round " + roundCounter + "~" + playerCount + " to " + computerCount);
     }
 
     if (playerCount > computerCount) {
         alert("You WIN the game " + playerCount + " to " +
             computerCount + "!");
+            console.log("Rounds: " + roundCounter);
     } else if (playerCount < computerCount) {
         alert("You LOSE the game " + computerCount + " to " +
             playerCount + "!");
+            console.log("Rounds: " + roundCounter);
     }
 
     playerCount = 0;
     computerCount = 0;
+    roundCounter = 0;
 }
 
 document.getElementById("rpsButton").addEventListener("click", game)
