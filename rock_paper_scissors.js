@@ -2,18 +2,45 @@ let playerCount = 0;
 let computerCount = 0;
 let roundCounter = 0;
 
-function userPlay() {
-    let selection = prompt("Please enter Rock, Paper, or Scissors.");
 
-    selection = selection.toLowerCase();
+const scoreList = document.querySelector('#score-list');
 
-    while (selection == "" || selection != "rock" && selection != "paper" &&
-        selection != "scissors") {
-        selection = prompt("Round " + roundCounter + "! " + playerCount + " to " + computerCount +
-            ". Please enter Rock, Paper, or Scissors.");
+function printScore(result) {
+    let roundUl = document.createElement('ul');
+
+    let roundLi = document.createElement('li');
+    let resultLi = document.createElement('li');
+    let scoreLi = document.createElement('li');
+    
+    let roundDisplay = "Round " + roundCounter;
+let roundOutcomeTie = "Tie! " + playerSelection + " and " + computerSelection;
+let roundOutcomeWin = "You Win! " + playerSelection + " beats " + computerSelection;
+let roundOutcomeLose = "You Lose! " + computerSelection + " beats " + playerSelection;
+let roundScore = "Player: " + playerCount + " - Computer: " + computerCount;
+
+}
+
+function scoreCheck() {
+    if (playerCount === 5 || computerCount === 5) {
+        return true;
     }
 
-    return selection;
+    return false;
+}
+
+function whoWon() {
+    if (playerCount > computerCount) {
+        playerCount = 0;
+        computerCount = 0;
+        roundCounter = 0;
+
+        return "player won";
+    }
+    playerCount = 0;
+    computerCount = 0;
+    roundCounter = 0;
+
+    return "computer won";
 }
 
 function computerPlay() {
@@ -30,56 +57,41 @@ function computerPlay() {
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
 
-    if (playerSelection === 0) {
-        return 0;
-    }
-
     if (playerSelection === 'rock' && computerSelection === 'rock' ||
         playerSelection === 'paper' && computerSelection === 'paper' ||
         playerSelection === 'scissors' && computerSelection === 'scissors') {
-        alert("Tie! " + playerSelection + " and " + computerSelection);
+        roundCounter++;
+
+        printScore(1);
     } else if (playerSelection === 'rock' && computerSelection === 'paper' ||
         playerSelection === 'paper' && computerSelection === 'scissors' ||
         playerSelection === 'scissors' && computerSelection === 'rock') {
-        alert("You Lose! " + computerSelection + " beats " + playerSelection);
         computerCount++;
         roundCounter++;
+
+        printScore(2);
     } else {
         alert("You Win! " + playerSelection + " beats " + computerSelection);
         playerCount++;
         roundCounter++;
+
+        printScore(3);
     }
-    return 1;
+    let gameOver = scoreCheck();
+
+    if (gameOver) {
+        let winner = whoWon();
+        alert(winner);
+        return winner;
+    }
 }
 
-function game() {
-    //for (roundCounter = 0; roundCounter < 5;) {
-    let getOut = playRound();
-    if (getOut === 0) { return; }
-    console.log("Round " + roundCounter + "~" + playerCount + " to " + computerCount);
-    // }
-
-    if (playerCount > computerCount) {
-        alert("You WIN the game " + playerCount + " to " +
-            computerCount + "!");
-        console.log("Rounds: " + roundCounter);
-    } else if (playerCount < computerCount) {
-        alert("You LOSE the game " + computerCount + " to " +
-            playerCount + "!");
-        console.log("Rounds: " + roundCounter);
-    }
-
-    playerCount = 0;
-    computerCount = 0;
-    roundCounter = 0;
-}
-
-const rockBtn = document.getElementById("rock").addEventListener("click",  function(){
+const rockBtn = document.getElementById("rock").addEventListener("click", function () {
     playRound("rock");
 }, false);
-const paperBtn = document.getElementById("paper").addEventListener("click",  function(){
+const paperBtn = document.getElementById("paper").addEventListener("click", function () {
     playRound("paper");
 }, false);
-const scissorsBtn = document.getElementById("scissors").addEventListener("click", function(){
+const scissorsBtn = document.getElementById("scissors").addEventListener("click", function () {
     playRound("scissors");
 }, false);
