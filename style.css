@@ -1,0 +1,47 @@
+* {
+    margin: none;
+    padding: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    margin: none;
+    padding: none;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.RPS {
+    display: block;
+    margin: auto;
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    border: 2px solid #f0f0f0;
+}
+
+.RPS:hover, .RPS:active {
+    border: 2px solid black;
+    background-color: lightgray;
+}
+
+.RPS:active {
+    position: relative;
+    top: 2px;
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 30px;
+    border-bottom: black 1px solid;
+}

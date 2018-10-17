@@ -5,10 +5,6 @@ let roundCounter = 0;
 function userPlay() {
     let selection = prompt("Please enter Rock, Paper, or Scissors.");
 
-    if (selection === null) {
-        return 0;
-    }
-
     selection = selection.toLowerCase();
 
     while (selection == "" || selection != "rock" && selection != "paper" &&
@@ -31,8 +27,7 @@ function computerPlay() {
     }
 }
 
-function playRound() {
-    let playerSelection = userPlay();
+function playRound(playerSelection) {
     let computerSelection = computerPlay();
 
     if (playerSelection === 0) {
@@ -58,20 +53,20 @@ function playRound() {
 }
 
 function game() {
-    for (roundCounter = 0; roundCounter < 5;) {
-        let getOut = playRound();
-        if (getOut === 0) { return; }
-        console.log("Round " + roundCounter + "~" + playerCount + " to " + computerCount);
-    }
+    //for (roundCounter = 0; roundCounter < 5;) {
+    let getOut = playRound();
+    if (getOut === 0) { return; }
+    console.log("Round " + roundCounter + "~" + playerCount + " to " + computerCount);
+    // }
 
     if (playerCount > computerCount) {
         alert("You WIN the game " + playerCount + " to " +
             computerCount + "!");
-            console.log("Rounds: " + roundCounter);
+        console.log("Rounds: " + roundCounter);
     } else if (playerCount < computerCount) {
         alert("You LOSE the game " + computerCount + " to " +
             playerCount + "!");
-            console.log("Rounds: " + roundCounter);
+        console.log("Rounds: " + roundCounter);
     }
 
     playerCount = 0;
@@ -79,4 +74,12 @@ function game() {
     roundCounter = 0;
 }
 
-document.getElementById("rpsButton").addEventListener("click", game)
+const rockBtn = document.getElementById("rock").addEventListener("click",  function(){
+    playRound("rock");
+}, false);
+const paperBtn = document.getElementById("paper").addEventListener("click",  function(){
+    playRound("paper");
+}, false);
+const scissorsBtn = document.getElementById("scissors").addEventListener("click", function(){
+    playRound("scissors");
+}, false);
