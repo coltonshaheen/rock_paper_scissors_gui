@@ -1,23 +1,44 @@
 let playerCount = 0;
 let computerCount = 0;
 let roundCounter = 0;
-
+let computerSelection;
+let playerSelection;
 
 const scoreList = document.querySelector('#score-list');
 
 function printScore(result) {
+    let scoreDiv = document.querySelector('#score-div')
     let roundUl = document.createElement('ul');
+    roundUl.classList.add('round-ul');
+    scoreDiv.appendChild(roundUl);
+
+    let roundDisplay = "Round " + roundCounter;
+    let roundOutcome = '';
+
+    if (result === 1) {
+        roundOutcome = "Tie! " + playerSelection + " and " + computerSelection;
+    } else if (result === 2) {
+        roundOutcome = "You Win! " + playerSelection + " beats " + computerSelection;
+    } else if (result === 3) {
+        roundOutcome = "You Lose! " + computerSelection + " beats " + playerSelection;
+    }
+
+    let roundScore = "Player: " + playerCount + " - Computer: " + computerCount;
 
     let roundLi = document.createElement('li');
-    let resultLi = document.createElement('li');
-    let scoreLi = document.createElement('li');
-    
-    let roundDisplay = "Round " + roundCounter;
-let roundOutcomeTie = "Tie! " + playerSelection + " and " + computerSelection;
-let roundOutcomeWin = "You Win! " + playerSelection + " beats " + computerSelection;
-let roundOutcomeLose = "You Lose! " + computerSelection + " beats " + playerSelection;
-let roundScore = "Player: " + playerCount + " - Computer: " + computerCount;
+    roundLi.classList.add('round-li');
+    roundLi.textContent = roundDisplay;
+    roundUl.appendChild(roundLi);
 
+    let resultLi = document.createElement('li');
+    resultLi.classList.add('result-li');
+    resultLi.textContent = roundOutcome;
+    roundUl.appendChild(resultLi);
+
+    let scoreLi = document.createElement('li');
+    scoreLi.classList.add('score-li');
+    scoreLi.textContent = roundScore;
+    roundUl.appendChild(scoreLi);
 }
 
 function scoreCheck() {
@@ -54,8 +75,9 @@ function computerPlay() {
     }
 }
 
-function playRound(playerSelection) {
-    let computerSelection = computerPlay();
+function playRound(playerInput) {
+    computerSelection = computerPlay();
+    playerSelection = playerInput;
 
     if (playerSelection === 'rock' && computerSelection === 'rock' ||
         playerSelection === 'paper' && computerSelection === 'paper' ||
@@ -71,7 +93,6 @@ function playRound(playerSelection) {
 
         printScore(2);
     } else {
-        alert("You Win! " + playerSelection + " beats " + computerSelection);
         playerCount++;
         roundCounter++;
 
