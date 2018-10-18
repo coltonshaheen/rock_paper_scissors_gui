@@ -22,6 +22,7 @@ button {
     text-align: center;
     padding: 10px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .RPS {
@@ -48,25 +49,58 @@ button {
     box-shadow: 0px 2px 5px gray;
     background-color: lightsalmon;
     border-radius: 0px 0px 5px 5px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    box-sizing : border-box;
 }
 
 #score-div {
-    margin: 20px;
+    margin: 150px 0px 0px;
 }
 
 ul {
     list-style: none;
     text-align: center;
+    padding: 10px;
+    border: 1px dotted gray;
+    border-radius: 5px;
+    width: 30%;
+    margin: 10px auto;
+}
+
+li {
+    cursor: default;
 }
 
 #reset-button {
-    width: 150px;
+    width: 200px;
+    font-size: 25px;
     background-color: lightsalmon;
     color: black;
     border: 2px solid lightsalmon;
+    margin-bottom: 25px;
 }
 
 #reset-button:hover, #reset-button:active {
     border: 2px solid black;
     background-color: salmon;
+}
+
+.result-li {
+    font-style: italic;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.game-winner-li, .round-li {
+    font-weight: bold;
+}
+
+.winner-ul {
+    font-size: 20px;
+    width: 50%;
+    border: 2px solid black;
+    background-color: lightcyan;
+    margin-bottom: 25px;
 }

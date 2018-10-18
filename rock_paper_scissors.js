@@ -91,6 +91,8 @@ function declareWinner(winner) {
     finalScoreLi.textContent = finalScore;
     winnerUl.appendChild(finalScoreLi);
 
+    previousUl = winnerUl;
+
     resetGame();
 }
 
